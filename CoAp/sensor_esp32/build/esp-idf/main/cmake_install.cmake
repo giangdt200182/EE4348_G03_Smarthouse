@@ -1,4 +1,4 @@
-# Install script for directory: D:/Cambienngoainha/coap_server/main
+# Install script for directory: D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("D:/Cambienngoainha/coap_server2/build/bootloader/esp-idf/cmake_install.cmake")
+  include("D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/bootloader/esp-idf/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/Cambienngoainha/coap_server2/build/bootloader/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/bootloader/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

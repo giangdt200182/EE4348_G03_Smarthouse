@@ -1,4 +1,4 @@
-/* * Data converted from D:/Cambienngoainha/coap_server2/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded

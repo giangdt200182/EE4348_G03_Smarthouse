@@ -1,8 +1,8 @@
 {
     "project_name":       "bootloader",
     "project_path":       "D:/esp/Espressif/frameworks/esp-idf-v4.4.5/components/bootloader/subproject",
-    "build_dir":          "D:/Cambienngoainha/coap_server/build/bootloader",
-    "config_file":        "D:/Cambienngoainha/coap_server/sdkconfig",
+    "build_dir":          "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/bootloader",
+    "config_file":        "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/sdkconfig",
     "config_defaults":    "",
     "app_elf":            "bootloader.elf",
     "app_bin":            "bootloader.bin",

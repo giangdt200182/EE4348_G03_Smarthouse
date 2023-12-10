@@ -1572,7 +1572,7 @@ rule C_STATIC_LIBRARY_LINKER____idf_protocol_examples_common_
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = D:\esp\Espressif\tools\cmake\3.23.1\bin\cmake.exe --regenerate-during-build -SD:\Cambienngoainha\coap_server2 -BD:\Cambienngoainha\coap_server2\build
+  command = D:\esp\Espressif\tools\cmake\3.23.1\bin\cmake.exe --regenerate-during-build -SD:\EE4843_G3\EE4348_G03_Smarthouse\CoAp\led_esp32 -BD:\EE4843_G3\EE4348_G03_Smarthouse\CoAp\led_esp32\build
   description = Re-running CMake...
   generator = 1
 

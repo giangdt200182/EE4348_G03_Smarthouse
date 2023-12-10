@@ -1,4 +1,4 @@
-# Install script for directory: D:/Cambienngoainha/coap_server
+# Install script for directory: D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("D:/Cambienngoainha/coap_server/build/esp-idf/cmake_install.cmake")
+  include("D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/esp-idf/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/Cambienngoainha/coap_server/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

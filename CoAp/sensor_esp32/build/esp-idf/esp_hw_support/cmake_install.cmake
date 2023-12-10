@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("D:/Cambienngoainha/coap_server/build/esp-idf/esp_hw_support/port/esp32/cmake_install.cmake")
+  include("D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/esp-idf/esp_hw_support/port/esp32/cmake_install.cmake")
 
 endif()
 

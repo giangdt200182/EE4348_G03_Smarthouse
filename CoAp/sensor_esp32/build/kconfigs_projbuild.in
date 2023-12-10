@@ -3,5 +3,5 @@ source "D:/esp/Espressif/frameworks/esp-idf-v4.4.5/components/bootloader/Kconfig
 source "D:/esp/Espressif/frameworks/esp-idf-v4.4.5/components/esp_rom/Kconfig.projbuild"
 source "D:/esp/Espressif/frameworks/esp-idf-v4.4.5/components/esptool_py/Kconfig.projbuild"
 source "D:/esp/Espressif/frameworks/esp-idf-v4.4.5/components/partition_table/Kconfig.projbuild"
-source "D:/Cambienngoainha/coap_server/main/Kconfig.projbuild"
+source "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/main/Kconfig.projbuild"
 source "D:/esp/Espressif/frameworks/esp-idf-v4.4.5/examples/common_components/protocol_examples_common/Kconfig.projbuild"

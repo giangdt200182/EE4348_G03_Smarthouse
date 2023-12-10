@@ -39,9 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("D:/Cambienngoainha/coap_server2/build/esp-idf/mbedtls/mbedtls/include/cmake_install.cmake")
-  include("D:/Cambienngoainha/coap_server2/build/esp-idf/mbedtls/mbedtls/3rdparty/cmake_install.cmake")
-  include("D:/Cambienngoainha/coap_server2/build/esp-idf/mbedtls/mbedtls/library/cmake_install.cmake")
+  include("D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/esp-idf/mbedtls/mbedtls/include/cmake_install.cmake")
+  include("D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/esp-idf/mbedtls/mbedtls/3rdparty/cmake_install.cmake")
+  include("D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/esp-idf/mbedtls/mbedtls/library/cmake_install.cmake")
 
 endif()
 

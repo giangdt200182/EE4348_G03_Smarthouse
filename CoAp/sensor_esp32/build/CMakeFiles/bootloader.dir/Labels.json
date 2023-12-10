@@ -2,34 +2,34 @@
 	"sources" : 
 	[
 		{
-			"file" : "D:/Cambienngoainha/coap_server/build/CMakeFiles/bootloader"
+			"file" : "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/CMakeFiles/bootloader"
 		},
 		{
-			"file" : "D:/Cambienngoainha/coap_server/build/CMakeFiles/bootloader.rule"
+			"file" : "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/CMakeFiles/bootloader.rule"
 		},
 		{
-			"file" : "D:/Cambienngoainha/coap_server/build/CMakeFiles/bootloader-complete.rule"
+			"file" : "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/CMakeFiles/bootloader-complete.rule"
 		},
 		{
-			"file" : "D:/Cambienngoainha/coap_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+			"file" : "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
 		},
 		{
-			"file" : "D:/Cambienngoainha/coap_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+			"file" : "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
 		},
 		{
-			"file" : "D:/Cambienngoainha/coap_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+			"file" : "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
 		},
 		{
-			"file" : "D:/Cambienngoainha/coap_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+			"file" : "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
 		},
 		{
-			"file" : "D:/Cambienngoainha/coap_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+			"file" : "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
 		},
 		{
-			"file" : "D:/Cambienngoainha/coap_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+			"file" : "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
 		},
 		{
-			"file" : "D:/Cambienngoainha/coap_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+			"file" : "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/sensor_esp32/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
 		}
 	],
 	"target" : 

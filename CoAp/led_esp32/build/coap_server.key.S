@@ -1,4 +1,4 @@
-/* * Data converted from D:/Cambienngoainha/coap_server2/main/certs/coap_server.key
+/* * Data converted from D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/main/certs/coap_server.key
  * (null byte appended)
  */
 .data

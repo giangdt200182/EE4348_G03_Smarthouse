@@ -5,15 +5,15 @@ cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
   "D:/esp/Espressif/frameworks/esp-idf-v4.4.5/components/bootloader/subproject"
-  "D:/Cambienngoainha/coap_server2/build/bootloader"
-  "D:/Cambienngoainha/coap_server2/build/bootloader-prefix"
-  "D:/Cambienngoainha/coap_server2/build/bootloader-prefix/tmp"
-  "D:/Cambienngoainha/coap_server2/build/bootloader-prefix/src/bootloader-stamp"
-  "D:/Cambienngoainha/coap_server2/build/bootloader-prefix/src"
-  "D:/Cambienngoainha/coap_server2/build/bootloader-prefix/src/bootloader-stamp"
+  "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/bootloader"
+  "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/bootloader-prefix"
+  "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/bootloader-prefix/tmp"
+  "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/bootloader-prefix/src/bootloader-stamp"
+  "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/bootloader-prefix/src"
+  "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "D:/Cambienngoainha/coap_server2/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "D:/EE4843_G3/EE4348_G03_Smarthouse/CoAp/led_esp32/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
