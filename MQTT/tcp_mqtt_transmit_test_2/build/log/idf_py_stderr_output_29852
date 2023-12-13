@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "runpy.py", line 194, in _run_module_as_main
+  File "runpy.py", line 87, in _run_code
+  File "D:\camBienHongNgoai\Espressif\python_env\idf5.0_py3.8_env\lib\site-packages\esptool\__main__.py", line 9, in <module>
+    esptool._main()
+  File "D:\camBienHongNgoai\Espressif\python_env\idf5.0_py3.8_env\lib\site-packages\esptool\__init__.py", line 1031, in _main
+    main()
+  File "D:\camBienHongNgoai\Espressif\python_env\idf5.0_py3.8_env\lib\site-packages\esptool\__init__.py", line 628, in main
+    argv = expand_file_arguments(argv or sys.argv[1:])
+  File "D:\camBienHongNgoai\Espressif\python_env\idf5.0_py3.8_env\lib\site-packages\esptool\__init__.py", line 895, in expand_file_arguments
+    print("esptool %s" % (" ".join(new_args[1:])))
+  File "encodings\cp1252.py", line 19, in encode
+UnicodeEncodeError: 'charmap' codec can't encode character '\u0300' in position 20: character maps to <undefined>
+CMake Error at run_serial_tool.cmake:55 (message):
+  
+  D:/camBienHongNgoai/Espressif/python_env/idf5.0_py3.8_env/Scripts/python.exe;;D:/camBienHongNgoai/Espressif/frameworks/esp-idf-v5.0.1/components/esptool_py/esptool/esptool.py;--chip;esp32
+  failed
+
+
