@@ -1,4 +1,5 @@
 **1. UPLOAD CODE FOR ESP32 FOR OUTDOOR SENSOR**
+
   *1.1. Access the path: EE4348_G03_Smarthouse/CoAp/sensor_esp32/
       - Upload code to ESP32
   *1.2. Connection Configuration
