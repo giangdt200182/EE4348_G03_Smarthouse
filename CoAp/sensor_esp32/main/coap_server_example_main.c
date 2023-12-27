@@ -24,6 +24,16 @@ static uint32_t read_adc_value(void)
     return adc1_get_raw(ADC1_CHANNEL_0);
 }
 
+/*READ ANOTHER ADC*/
+static uint32_t read_another_adc_value(void)
+{
+    // Thêm mã đọc giá trị từ kênh ADC khác ở đây
+    adc1_config_width(ADC_WIDTH_BIT_12);
+    adc1_config_channel_atten(ADC1_CHANNEL_1, ADC_ATTEN_DB_11);
+    return adc1_get_raw(ADC1_CHANNEL_1);
+}
+
+
 /*
  * The resource handler
  */
@@ -34,15 +44,34 @@ hnd_data_get(coap_resource_t *resource,
              const coap_string_t *query,
              coap_pdu_t *response)
 {
+    //uint32_t adc_value = read_adc_value();
+    //char adc_response[20];
+    //snprintf(adc_response, sizeof(adc_response), "%u", adc_value);
+    //coap_pdu_set_code(response, COAP_RESPONSE_CODE_CONTENT);
+    //coap_add_data_large_response(resource, session, request, response,
+    //                             query, COAP_MEDIATYPE_TEXT_PLAIN, 60, 0,
+    //                           strlen(adc_response),
+    //                             (const u_char *)adc_response,
+    //                             NULL, NULL);
+     // Log the ADC value to the terminal
+    //ESP_LOGI(TAG, "Sending ADC Value in response to GET request: %u", adc_value);
+
     uint32_t adc_value = read_adc_value();
-    char adc_response[20];
-    snprintf(adc_response, sizeof(adc_response), "%u", adc_value);
+    uint32_t another_adc_value = read_another_adc_value();
+
+    char adc_response[40];
+    snprintf(adc_response, sizeof(adc_response), "%u,%u", adc_value, another_adc_value);
+
     coap_pdu_set_code(response, COAP_RESPONSE_CODE_CONTENT);
     coap_add_data_large_response(resource, session, request, response,
                                  query, COAP_MEDIATYPE_TEXT_PLAIN, 60, 0,
                                  strlen(adc_response),
                                  (const u_char *)adc_response,
                                  NULL, NULL);
+    
+    // Log the ADC values to the terminal
+    ESP_LOGI(TAG, "Sending ADC Values in response to GET request - ADC1: %u, ADC2: %u", adc_value, another_adc_value);
+
 }
 
 ///

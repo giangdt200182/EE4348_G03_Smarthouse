@@ -43,7 +43,7 @@ async def coap_post_request_client():
 
             # Create a POST request with the created payload
             post_request = Message(code=Code.POST, payload=payload)
-            post_request.set_request_uri("coap://192.168.243.75:5683/Control")
+            post_request.set_request_uri("coap://192.168.243.99:5683/Control")
 
             # Create a CoAP client context
             context = await Context.create_client_context()

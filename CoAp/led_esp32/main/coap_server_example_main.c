@@ -18,10 +18,13 @@
 const static char *TAG = "CoAP_server";
 
 // GPIO pin for controlling the switch
-#define SWITCH_GPIO_PIN GPIO_NUM_4
+#define SWITCH_GPIO_PIN GPIO_NUM_2
 
 // Global variable to store LED state
 static int led_state = 0;
+
+/* Counter variable */
+static int i = 0;
 
 /* The resource handler for "Data" path */
 static void hnd_data_get(coap_resource_t *resource,
@@ -30,11 +33,20 @@ static void hnd_data_get(coap_resource_t *resource,
                          const coap_string_t *query,
                          coap_pdu_t *response)
 {
+    // Update the counter value
+    if (led_state == 1) {
+        i++;
+    } else if (led_state == 0) {
+        i = 0;
+    }
     // Send the current state of the LED
-    ESP_LOGI(TAG, "Sending LED state in response to GET request: %d", led_state);
+    ESP_LOGI(TAG, "Sending LED state in response to GET request: %d,%d", led_state,i);
 
-    char led_state_response[2];
-    snprintf(led_state_response, sizeof(led_state_response), "%d", led_state);
+    char led_state_response[10];  // Adjust the size based on your requirements
+    snprintf(led_state_response, sizeof(led_state_response), "%d,%d", led_state, i);
+
+    //char led_state_response[2];
+    //snprintf(led_state_response, sizeof(led_state_response), "%d", led_state);
     coap_pdu_set_code(response, COAP_RESPONSE_CODE_CONTENT);
     coap_add_data_large_response(resource, session, request, response,
                                  query, COAP_MEDIATYPE_TEXT_PLAIN, 60, 0,
