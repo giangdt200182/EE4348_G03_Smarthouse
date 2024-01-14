@@ -12,19 +12,21 @@ import random
 from aiocoap import Context, Message, Code, error
 
 #Thay đổi broker dựa theo địa chỉ IP của mạng
-broker = '192.168.199.214'
+broker = '192.168.53.214'
 
 port = 1883
 topic1 = "/test_mqtt_kiet_giang/qos1" #nhan du lieu truyen len tu cam bien temperature
 topic2 = "/test_mqtt_kiet_giang/qos0" #nhan trang thai cua ccch temperature
 topic3 = "/test_mqtt_kiet_giang/qos2" #truyen tin hieu dieu khien ve ccch cua temperature
 topic4  = "/test_mqtt_kiet_giang/time_delay" #truyền tín hiệu về thời gian lấy mẫu của hệ thống trong nhà xuống ESP 
-uri1 = 'coap://192.168.199.178:5683/Data' #sensor
-uri2 = 'coap://192.168.199.225:5683/Data' #led
-uri3 = 'coap://192.168.199.225:5683/Control'
+uri1 = 'coap://192.168.53.75:5683/Data' #sensor
+uri2 = 'coap://192.168.53.178:5683/Data' #led
+uri3 = 'coap://192.168.53.178:5683/Control'
 
 time_delay_outdoor = 1 # thời gian lấy mẫu của hệ thống ngoài trời
 observe_data = True
+threshold_indoor = 50
+threshold_outdoor = 50
 
 client_id = f'subscribe-{random.randint(0, 100)}'
 
@@ -39,6 +41,8 @@ ACCESS_TOKEN5 = 'sLi1EFHa2v7L76cTfhOV'
 ACCESS_TOKEN6 = "MDKqILMY6th2mkddBE9U"
 ACCESS_TOKEN7 = "kwdek0puo9nxev6yklkz"
 ACCESS_TOKEN8 = "drlgPwEfalBIqfJKdskx"
+ACCESS_TOKEN9 = "ltWYLKsyZCv9P6DSMCO9"
+ACCESS_TOKEN10 = "CWLhybvPEOJAzP9ASp3d"
 
 # MQTT topics để truyền lên Thingsboard
 TELEMETRY_TOPIC = "v1/devices/me/telemetry"
@@ -92,6 +96,8 @@ client5 = mqtt_client.Client()#nhan tin hieu dieu khien tu switch cua ccch cua i
 client6 = mqtt_client.Client()#nhan tin hieu dieu khien tu switch cua ccch cua outdoor xuong hc
 client7 = mqtt_client.Client()#nhan tin hieu time delay tu knob xuong indoor
 client8 = mqtt_client.Client()#nhan tin hieu time delay tu knob xuong outdoor
+client9 = mqtt_client.Client()
+client10 = mqtt_client.Client()
 
 # Tạo các hàm ngắt
 client1.on_connect = on_connect1
@@ -132,6 +138,12 @@ client7.connect(THINGSBOARD_HOST,1883,60)
 client8.username_pw_set(ACCESS_TOKEN8)
 client8.connect(THINGSBOARD_HOST,1883,60)
 
+client9.username_pw_set(ACCESS_TOKEN9)
+client9.connect(THINGSBOARD_HOST,1883,60)
+
+client10.username_pw_set(ACCESS_TOKEN10)
+client10.connect(THINGSBOARD_HOST,1883,60)
+
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
         print("Connected to MQTT Broker!")
@@ -164,6 +176,11 @@ def on_message(client, userdata, msg):
         str2 = float(str2)
         str1 = str1*120/4095
         str2 = str2*100/4095
+        print(str1)
+        if str1 > threshold_indoor:
+                gpio = 0
+                client0.publish(topic3,gpio)
+                print("Turn off indoor led")
         if internet_connection:
             telemetry_data = {"temperature": str1,"humidity": str2}
             # client1.publish(TELEMETRY_TOPIC, payload=msg.payload.decode(), qos=1)
@@ -171,10 +188,6 @@ def on_message(client, userdata, msg):
             print("Published Telemetry data: {}".format(telemetry_data))
         else:
             print("Lost internet Connection!!!!!!")
-            print(str1)
-            if str1 > 40:
-                gpio = 0
-                client0.publish(topic3,gpio)
         
 client0.subscribe(topic1)
 client0.subscribe(topic2)
@@ -276,6 +289,50 @@ def on_message5(client, userdata, msg): #nhận tín hiệu điều khiển từ
             global time_delay_outdoor
             time_delay_outdoor = params
             
+def on_message6(client, userdata, msg): #nhận tín hiệu điều khiển từ Thingsboard và thay đổi thời gian trích mẫu theo giao thức CoAP
+    print('Topic: ' + msg.topic + '\nMessage: ' + str(msg.payload))
+    if msg.topic.startswith('v1/devices/me/rpc/request/'):
+        requestId = msg.topic[len('v1/devices/me/rpc/request/'):len(msg.topic)]
+        print("requestId : ",requestId)
+        data = json.loads(msg.payload)
+        if data['method'] == 'getValue':
+            print("getvalue request\n")
+            print("sent getValue : ",button_state)
+            client.publish('v1/devices/me/rpc/response/'+requestId, json.dumps(button_state), 1)
+        if data['method'] == 'setValue':
+            print("setvalue request\n")
+            params = data['params']
+            print(params)
+            client.publish('v1/devices/me/attributes', json.dumps(button_state), 1)
+            global threshold_indoor
+            threshold_indoor = params
+
+def on_connect6(client, userdata, flags, rc):
+    print("rc code1:",rc)
+    client.subscribe('v1/devices/me/rpc/request/+')
+    
+def on_message7(client, userdata, msg): #nhận tín hiệu điều khiển từ Thingsboard và thay đổi thời gian trích mẫu theo giao thức CoAP
+    print('Topic: ' + msg.topic + '\nMessage: ' + str(msg.payload))
+    if msg.topic.startswith('v1/devices/me/rpc/request/'):
+        requestId = msg.topic[len('v1/devices/me/rpc/request/'):len(msg.topic)]
+        print("requestId : ",requestId)
+        data = json.loads(msg.payload)
+        if data['method'] == 'getValue':
+            print("getvalue request\n")
+            print("sent getValue : ",button_state)
+            client.publish('v1/devices/me/rpc/response/'+requestId, json.dumps(button_state), 1)
+        if data['method'] == 'setValue':
+            print("setvalue request\n")
+            params = data['params']
+            print(params)
+            client.publish('v1/devices/me/attributes', json.dumps(button_state), 1)
+            global threshold_outdoor
+            threshold_outdoor = params
+
+def on_connect7(client, userdata, flags, rc):
+    print("rc code1:",rc)
+    client.subscribe('v1/devices/me/rpc/request/+')
+    
 client5.on_connect = on_connect2
 client5.on_message = on_message2
 
@@ -287,7 +344,13 @@ client7.on_message = on_message4
 
 client8.on_connect = on_connect5
 client8.on_message = on_message5
+
+client9.on_connect = on_connect6
+client9.on_message = on_message6
       
+client10.on_connect = on_connect7
+client10.on_message = on_message7
+
 logging.basicConfig(level=logging.INFO)
 
 # Hàm quan sát trạng thái của tài nguyên CoAP trên máy chủ bằng yêu cầu GET
@@ -311,35 +374,35 @@ async def observe_coap_get_request_data(uri,client):
             str2 = float(str2)
             str1 = str1*120/4095
             str2 = str2*100/4095
+            if str1 > threshold_outdoor:
+                payload = 1
+                try:
+                    # Convert the integer payload to bytes
+                    payload_bytes = str(payload).encode('utf-8')
+                    # Create a POST request with the created payload
+                    post_request = Message(code=Code.POST, payload=payload_bytes)
+                    post_request.set_request_uri(uri3)
+
+                    # Create a CoAP client context
+                    context = await Context.create_client_context()
+
+                    # Send the request and receive the response from the server
+                    post_response = await context.request(post_request).response
+
+                    # Display the response content
+                    print(f"POST Response from server: {post_response.payload.decode('utf-8')}")
+                except error.RequestTimedOut:
+                # Handle the case where the request times out (no connection)
+                    print("Timeout while sending POST request, trying again...")
+
+                except Exception as e:
+                    # Handle any errors that occur while sending the request
+                    print(f"POST Error: {e}")
             if check_internet_connection():
                 telemetry_data = {"temperature": str1, "humidity": str2}
                 client.publish(TELEMETRY_TOPIC, payload=json.dumps(telemetry_data), qos=1)
             else:
-                if int(str1)>40:
-                    payload = 1
-                    try:
-                        # Convert the integer payload to bytes
-                        payload_bytes = str(payload).encode('utf-8')
-                        # Create a POST request with the created payload
-                        post_request = Message(code=Code.POST, payload=payload_bytes)
-                        post_request.set_request_uri(uri3)
-
-                        # Create a CoAP client context
-                        context = await Context.create_client_context()
-
-                        # Send the request and receive the response from the server
-                        post_response = await context.request(post_request).response
-
-                        # Display the response content
-                        print(f"POST Response from server: {post_response.payload.decode('utf-8')}")
-                    except error.RequestTimedOut:
-                    # Handle the case where the request times out (no connection)
-                        print("Timeout while sending POST request, trying again...")
-
-                    except Exception as e:
-                        # Handle any errors that occur while sending the request
-                        print(f"POST Error: {e}")
-                        
+                print("Loss internet connection!")
         except error.RequestTimedOut:
             print("Timeout while requesting {}, trying again...".format(uri))
         except Exception as e:
@@ -460,6 +523,8 @@ def run():
     client6.loop_start()
     client7.loop_start()
     client8.loop_start()
+    client9.loop_start()
+    client10.loop_start()
     asyncio.run(main_coap())
 
 if __name__ == '__main__':
